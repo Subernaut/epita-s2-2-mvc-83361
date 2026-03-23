@@ -1,0 +1,33 @@
+﻿@model Library.MVC.Models.ErrorViewModel
+
+@{
+    ViewData["Title"] = "Error";
+}
+
+<h1 class="text-danger">Error.</h1>
+<h2 class="text-danger">An error occurred while processing your request.</h2>
+
+<p>
+    Our team has been notified. Please try again later or return to the <a href="/">home page</a>.
+</p>
+
+@if (Model.ShowRequestId)
+{
+    <p>
+        <strong>Request ID:</strong> <code>@Model.RequestId</code>
+    </p>
+}
+
+@if (!string.IsNullOrEmpty(Model.FriendlyMessage))
+{
+    <p class="text-info">
+        @Model.FriendlyMessage
+    </p>
+}
+
+@if (Model.IsDevelopment && !string.IsNullOrEmpty(Model.ExceptionDetails))
+{
+    <hr />
+    <h3>Exception Details (Development Only)</h3>
+    <pre>@Model.ExceptionDetails</pre>
+}
