@@ -1,0 +1,60 @@
+﻿@model Library.MVC.ViewModels.DashboardViewModel
+@using Microsoft.AspNetCore.Mvc.Rendering
+
+@{
+    ViewData["Title"] = "Dashboard";
+
+    var towns = ViewBag.TownList as List<SelectListItem>;
+    var riskRatings = ViewBag.RiskRatingList as List<SelectListItem>;
+    string selectedTown = ViewBag.SelectedTown as string ?? "";
+    string selectedRiskRating = ViewBag.SelectedRiskRating as string ?? "";
+}
+
+<h1>Dashboard</h1>
+
+<form method="get" class="mb-3">
+    <div class="row g-2">
+        <div class="col-md-3">
+            <select name="townFilter" class="form-select" asp-items="towns">
+                <option value="">All Towns</option>
+            </select>
+        </div>
+        <div class="col-md-3">
+            <select name="riskRatingFilter" class="form-select" asp-items="riskRatings">
+                <option value="">All Risk Ratings</option>
+            </select>
+        </div>
+        <div class="col-md-2">
+            <button type="submit" class="btn btn-primary w-100">Filter</button>
+        </div>
+    </div>
+</form>
+
+<div class="row mt-4">
+    <div class="col-md-4">
+        <div class="card bg-light mb-3">
+            <div class="card-body">
+                <h5 class="card-title">Inspections this month</h5>
+                <p class="card-text">@Model.InspectionsThisMonthCount</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card bg-danger text-white mb-3">
+            <div class="card-body">
+                <h5 class="card-title">Failed inspections this month</h5>
+                <p class="card-text">@Model.FailedInspectionsThisMonthCount</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card bg-warning mb-3">
+            <div class="card-body">
+                <h5 class="card-title">Open overdue follow-ups</h5>
+                <p class="card-text">@Model.OpenFollowUpsOverdueCount</p>
+            </div>
+        </div>
+    </div>
+</div>
