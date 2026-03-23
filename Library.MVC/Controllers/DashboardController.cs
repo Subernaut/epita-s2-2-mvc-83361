@@ -8,9 +8,11 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Library.MVC.Controllers
 {
+    [Authorize(Roles = "Admin,Inspector,Viewer")]
     public class DashboardController : Controller
     {
         private readonly ApplicationDbContext _context;

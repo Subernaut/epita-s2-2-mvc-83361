@@ -7,9 +7,11 @@ using Microsoft.EntityFrameworkCore;
 using Library.Domain;
 using Library.MVC.Data;
 using Serilog;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Library.MVC.Controllers
 {
+    [Authorize(Roles = "Admin,Inspector,Viewer")]
     public class InspectionsController : Controller
     {
         private readonly ApplicationDbContext _context;
