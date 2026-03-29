@@ -12,7 +12,7 @@ namespace Library.Domain
 
         // FK
         public int InspectionId { get; set; }
-        public Inspection Inspection { get; set; } = null!;
+        public Inspection? Inspection { get; set; } = null!;
 
         public DateTime DueDate { get; set; }
 

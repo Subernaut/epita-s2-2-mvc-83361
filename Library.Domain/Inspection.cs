@@ -13,7 +13,7 @@ namespace Library.Domain
 
         // FK
         public int PremisesId { get; set; }
-        public Premise Premises { get; set; } = null!;
+        public Premise? Premises { get; set; } = null!;
 
         public DateTime InspectionDate { get; set; }
 
