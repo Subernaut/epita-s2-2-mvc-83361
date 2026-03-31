@@ -41,6 +41,36 @@ namespace Library.MVC.Data
                 await userManager.AddToRoleAsync(adminUser, "Admin");
             }
 
+            const string viewerEmail = "viewer@inspections.com";
+            const string viewerPassword = "Viewer123!";
+
+            var viewerUser = await userManager.FindByEmailAsync(viewerEmail);
+            if (viewerUser == null)
+            {
+                viewerUser = new IdentityUser { UserName = viewerEmail, Email = viewerEmail, EmailConfirmed = true };
+                await userManager.CreateAsync(viewerUser, viewerPassword);
+                await userManager.AddToRoleAsync(viewerUser, "Viewer");
+            }
+            else if (!await userManager.IsInRoleAsync(viewerUser, "Viewer"))
+            {
+                await userManager.AddToRoleAsync(viewerUser, "Viewer");
+            }
+
+            const string inspectEmail = "inspector@inspections.com";
+            const string inspectPassword = "Inspect123!";
+
+            var inspectUser = await userManager.FindByEmailAsync(inspectEmail);
+            if (inspectUser == null)
+            {
+                inspectUser = new IdentityUser { UserName = inspectEmail, Email = inspectEmail, EmailConfirmed = true };
+                await userManager.CreateAsync(inspectUser, inspectPassword);
+                await userManager.AddToRoleAsync(inspectUser, "Inspector");
+            }
+            else if (!await userManager.IsInRoleAsync(inspectUser, "Inspector"))
+            {
+                await userManager.AddToRoleAsync(inspectUser, "Inspector");
+            }
+
             // --- Skip if already seeded ---
             if (await context.Premises.AnyAsync()) return;
 
